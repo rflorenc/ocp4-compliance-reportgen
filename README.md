@@ -13,9 +13,4 @@ Once compliance-operator scans have finished.
 
 `generate-html-results.sh` creates a Deployment which spawns a reportgen pod per scan, mounts the pvc used for the scan and exposes the results via Openshift route.
 
-```yaml
-      volumes:
-        - name: results
-          persistentVolumeClaim:
-            claimName: {SCAN_NAME}
-```
+Kudos to @kharyam !
