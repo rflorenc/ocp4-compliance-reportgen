@@ -8,7 +8,7 @@ This tool generates per scan oscap html pages derived from compliance-operator r
 
 Once compliance-operator scans have finished.
 
-`$ ./hack/generate-html-results.sh`
+`$ cd ./hack && generate-html-results.sh`
 
 
 `generate-html-results.sh` creates a Deployment which spawns a reportgen pod per scan, mounts the pvc used for the scan and exposes the results via Openshift route.
