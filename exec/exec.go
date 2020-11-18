@@ -3,10 +3,7 @@ package exec
 import (
 	"fmt"
 	"log"
-	"os"
 	"os/exec"
-	"os/signal"
-	"syscall"
 
 	rgerr "github.com/rflorenc/ocp4-compliance-reportgen/error"
 )
@@ -17,15 +14,7 @@ func ExecuteCmd(cmdName string, cmdArgs ...string) {
 
 	cmd := exec.Command(cmdName, cmdArgs...)
 	err = cmd.Run()
-	rgerr.CheckError(fmt.Sprintf("%s.Run():", cmdName), err)
-}
-
-// SigHandler handles signals and calls Shutdown()
-func SigHandler() {
-	termChan := make(chan os.Signal)
-	signal.Notify(termChan, syscall.SIGKILL, syscall.SIGINT, syscall.SIGTERM)
-
-	Shutdown()
+	rgerr.CheckError(fmt.Sprintf("%s.Run()", cmdName), err)
 }
 
 // Shutdown kills all nginx processes

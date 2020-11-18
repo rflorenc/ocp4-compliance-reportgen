@@ -1,6 +1,6 @@
 #!/bin/bash
 
-scans=$(oc get compliancesuite -o jsonpath='{.items[*].spec.scans[*].name}')
+scans=$(oc -n openshift-compliance get compliancesuite -o jsonpath='{.items[*].spec.scans[*].name}')
 
 if [[ ! -z "$scans" ]]; then
   for scan in $scans
