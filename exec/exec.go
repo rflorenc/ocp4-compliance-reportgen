@@ -20,11 +20,11 @@ func ExecuteCmd(cmdName string, cmdArgs ...string) {
 // Shutdown kills all nginx processes
 func Shutdown() {
 	ExecuteCmd("killall", "nginx")
-	log.Printf("Stopped NGINX")
+	log.Fatalf("Stopped NGINX.")
 }
 
 // StartWebServer starts nginx
 func StartWebServer() {
-	log.Printf("Starting NGINX")
 	ExecuteCmd("nginx", "-c", "/opt/nginx/nginx.conf")
+	log.Printf("Started NGINX.")
 }
