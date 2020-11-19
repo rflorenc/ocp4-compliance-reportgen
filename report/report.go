@@ -66,9 +66,11 @@ func GenerateReportHTML() {
 	ParseExecTemplate(filepath.Join(RootHTMLDir, "index_new.html"), "d1", data.TemplateMap)
 
 	for data.ScanNumber <= maxScans {
+		log.Printf("Processing scan number: %d\n", data.ScanNumber)
 		// Scans are created / mounted at /opt/nginx/html/?
 		fi, err := os.Lstat(filepath.Join(RootHTMLDir, strconv.Itoa(data.ScanNumber)))
 		if err != nil {
+			log.Printf("os.Lstat")
 			break
 		}
 
@@ -84,6 +86,7 @@ func GenerateReportHTML() {
 			name := strings.TrimRight(bzipFile, "-pod.xml.bzip2")
 			aux := strings.TrimPrefix(name, filepath.Join(RootHTMLDir, strconv.Itoa(data.ScanNumber)))
 			trimmedName := strings.TrimLeft(aux, string(os.PathSeparator))
+			fmt.Printf("name: %s", name)
 
 			exists := fileExists(name + "result.html")
 			if !exists {
@@ -124,13 +127,13 @@ func GenerateReportHTML() {
 
 			// Append per scan oscap HTML to RootHTMLDir/scannumber/index_new.html
 			indexNewFileHandle, _ = ParseExecTemplate(indexNew, "d3", data.TemplateMap)
-
 		}
 
 		// Append closing HTML to RootHTMLDir/scannumber/index_new.html
 		indexNewFileHandle, _ = ParseExecTemplate(indexNew, "d4", data.TemplateMap)
 
 		prefixScanPath := filepath.Join(RootHTMLDir, strconv.Itoa(data.ScanNumber))
+		log.Printf("prefixScanPath: %s\n", prefixScanPath)
 
 		src := filepath.Join(prefixScanPath, "index_new.html")
 		dest := filepath.Join(prefixScanPath, "index.html")
@@ -139,7 +142,7 @@ func GenerateReportHTML() {
 		// Append closing HTML to RootHTMLDir/index_new.html
 		_, _ = ParseExecTemplate(filepath.Join(RootHTMLDir, "index_new.html"), "d5", data.TemplateMap)
 
-		data.ScanNumber++
+		data.IncrementScanNumber()
 	}
 
 	// Append closing HTML to RootHTMLDir/index_new.html
@@ -160,6 +163,7 @@ func fileExists(fileName string) bool {
 }
 
 func cleanup(src, dest, fileMode string) {
+	log.Printf("src: %s, dest: %s, fileMode: %s", src, dest, fileMode)
 	rgexec.ExecuteCmd("rm", "-f", dest)
 	rgexec.ExecuteCmd("mv", src, dest)
 	rgexec.ExecuteCmd("chmod", fileMode, dest)

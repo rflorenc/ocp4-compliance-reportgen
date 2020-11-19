@@ -11,6 +11,11 @@ type TemplateData struct {
 	TemplateMap map[string]string
 }
 
+// IncrementScanNumber increments ScanNumber counter
+func (td *TemplateData) IncrementScanNumber() {
+	td.ScanNumber++
+}
+
 // D1 is the first block of templated HTML to be applied to the index.html located in the root folder
 // by default at /opt/nginx/html/
 // index.html simply contains a sequence of scans (0..N) containing an href
@@ -81,7 +86,7 @@ const D3 = `          <tr><th scope="row">{{.ScanNameResult}}</th><td>{{.ScanNam
 
 // D4 is a template block to be appended to D2
 // Closes D2 HTML
-const D4 = `      </tbody></table> 
+const D4 = `      </tbody></table>
 </body>
 </html>
 `

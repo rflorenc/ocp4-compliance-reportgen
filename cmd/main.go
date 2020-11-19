@@ -14,7 +14,7 @@ import (
 
 func pollReports() {
 	for {
-		time.Sleep(10 * time.Second)
+		time.Sleep(time.Duration(10) * time.Second)
 		report.GenerateReportHTML()
 	}
 }
