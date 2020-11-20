@@ -121,9 +121,9 @@ func GenerateReportHTML() {
 				oscapCmd.Wait()
 			}
 
-			data.ScanNameResult = trimmedName + "-result"
-			data.ScanNameResultHTML = trimmedName + "-result.html"
-			data.ScanNameModifiedTime = fi.ModTime().String()
+			data.UpdateScanNameResult(trimmedName + "-result")
+			data.UpdateScanNameResultHTML(trimmedName + "-result.html")
+			data.UpdateScanNameModifiedTime(fi.ModTime().String())
 
 			// Append per scan oscap HTML to RootHTMLDir/scannumber/index_new.html
 			indexNewFileHandle, _ = ParseExecTemplate(indexNew, "d3", data.TemplateMap)
