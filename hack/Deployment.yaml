@@ -30,7 +30,7 @@ spec:
         version: v1
     spec:
       containers:
-      - image: docker.io/rfplay/compliance-reportgen:gotest1
+      - image: docker.io/rfplay/compliance-reportgen:v1.0
         name: {SCAN_NAME}-html-results
         volumeMounts:
         - mountPath: /opt/nginx/html
