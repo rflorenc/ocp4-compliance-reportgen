@@ -16,6 +16,18 @@ func (td *TemplateData) IncrementScanNumber() {
 	td.ScanNumber++
 }
 
+func (td * TemplateData) UpdateScanNameResult(ScanNameResult string) {
+	td.ScanNameResult = ScanNameResult
+}
+
+func (td * TemplateData) UpdateScanNameResultHTML(ScanNameResultHTML string) {
+	td.ScanNameResultHTML = ScanNameResultHTML
+}
+
+func (td * TemplateData) UpdateScanNameModifiedTime(ScanNameModifiedTime string) {
+	td.ScanNameModifiedTime = ScanNameModifiedTime
+}
+
 // D1 is the first block of templated HTML to be applied to the index.html located in the root folder
 // by default at /opt/nginx/html/
 // index.html simply contains a sequence of scans (0..N) containing an href
