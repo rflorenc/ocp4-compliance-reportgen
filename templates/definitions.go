@@ -16,15 +16,15 @@ func (td *TemplateData) IncrementScanNumber() {
 	td.ScanNumber++
 }
 
-func (td * TemplateData) UpdateScanNameResult(ScanNameResult string) {
+func (td *TemplateData) UpdateScanNameResult(ScanNameResult string) {
 	td.ScanNameResult = ScanNameResult
 }
 
-func (td * TemplateData) UpdateScanNameResultHTML(ScanNameResultHTML string) {
+func (td *TemplateData) UpdateScanNameResultHTML(ScanNameResultHTML string) {
 	td.ScanNameResultHTML = ScanNameResultHTML
 }
 
-func (td * TemplateData) UpdateScanNameModifiedTime(ScanNameModifiedTime string) {
+func (td *TemplateData) UpdateScanNameModifiedTime(ScanNameModifiedTime string) {
 	td.ScanNameModifiedTime = ScanNameModifiedTime
 }
 
